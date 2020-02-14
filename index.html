@@ -2,44 +2,59 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css">
-	<!-- <link rel="stylesheet" type="text/css" href="Animate.css"> -->
+	<link rel="stylesheet" type="text/css" href="Animate.css">
 	<title>Resurgence 2020</title>
 	<script type="text/javascript">
 		(function () {
-		  setTimeout(function() { 
+		  setTimeout(function() {
 			  	console.log('Hi');
-			  	var a = document.getElementById('main');
-			  	var c = document.getElementById('main1');
-			  	var b = document.getElementsByClassName('videoOut');
-			  	console.log(a, b);
-			  	//b[0].classList.add("animated"); 
-			  	//b[0].classList.add("fadeOut");
-			  	b[1].classList.remove("invisible");
-			  	a.classList.add("invisible");
-			  	c.classList.remove("invisible");
-			  	b[0].classList.add("invisible");
-			  	//b[1].classList.add("animated"); 
-			  	//b[1].classList.add("fadeIn");
-			  	b[1].autoplay = true;
-				b[1].load();
+			  	const a = document.getElementById('main');
+			  	const c = document.getElementById('main1');
+					const b = document.getElementById('LandingVideo');
+			  	console.log(a, c);
+			  	a.classList.add("animated");
+			  	a.classList.add("fadeOut");
+					console.log("Entering the animation");
+					a.addEventListener('animationend', function() {
+						console.log("Animation ended");
+			  		a.classList.add("invisible");
+						c.classList.remove("invisible");
+			  		c.classList.add("animated");
+			  		c.classList.add("zoomIn");
+						c.classList.add("slow");
+						c.addEventListener('animationend', function()	{
+			  			b.autoplay = true;
+							b.load();
+						});
+						(function () {
+						  setTimeout(function() {
+							  	console.log('End');
+							  	var d = document.getElementById('LoopVideo');
+									b.classList.add('invisible');
+									d.classList.remove('invisible');
+							}, 5500);
+						}());
+					});
 			}, 4100);
 		}());
 	</script>
 </head>
 <body>
-	<div class="Loader" id="main">
-		<video autoplay class="videoOut video">
+	<div class="Loader videoOut" id="main">
+		<video autoplay class="video">
 			<source src="Loader.mp4" type="video/mp4">
 		</video>
-		
 	</div>
-	<div class="Landing invisible" id="main1">
-		<video class="videoOut video1">
-			<source src="landing.mp4" type="video/mp4">
+	<div class="Landing invisible videoOut" id="main1">
+		<video class="video1" id="LandingVideo">
+			<source src="landing.mp4" type="video/mp4" id="test">
+		</video>
+		<video autoplay loop class="video2 invisible" id="LoopVideo">
+			<source src="loop.mp4" type="video/mp4">
 		</video>
 		<nav class="navbar">
 			<ul class="navmenu">
-				<li><img src="download.jfif" class="navlogo"></li>
+				<li><img src="logo.png" class="navlogo"></li>
 				<li class="navitems">Home</li>
 				<li class="navitems">Events</li>
 				<li class="navitems">Gallery</li>
